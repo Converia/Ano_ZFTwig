@@ -55,7 +55,10 @@ class Ano_ZFTwig_Extension_TransExtension extends Twig_Extension
      * @return string          The translated output
      */
     public function trans(Twig_Environment $env, $input)
-    {        
+    {
+    	if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->translate($input);
     }
 

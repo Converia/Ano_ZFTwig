@@ -89,31 +89,49 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
 
     public function getHeadTitle(Twig_Environment $env)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->headTitle();
     }
 
     public function getJavascripts(Twig_Environment $env)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->headScript();
     }
 
     public function getStylesheets(Twig_Environment $env)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->headLink();
     }
 
     public function getMetas(Twig_Environment $env)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->headMeta();
     }
 
     public function getUrl(Twig_Environment $env, $name, array $parameters = array(), $reset = false, $encode = true)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->url($parameters, $name, $reset, $encode);
     }
 
     public function getLayoutBlock(Twig_Environment $env, $name)
     {
+		if(!$env instanceof Ano_ZFTwig_Environment){
+			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
+		}
         return $env->getView()->layout()->__get($name);
     }
 
