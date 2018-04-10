@@ -26,13 +26,13 @@ class Ano_ZFTwig_Environment extends Twig_Environment
 
     /**
      * @param Zend_View_Interface    $viw     A Zend Framework view object
-     * @param Twig_LoaderInterface   $loader  A Twig_LoaderInterface instance
+     * @param Twig_Loader_Filesystem   $loader  A Twig_Loader_Filesystem instance
      * @param array                  $options An array of options
      *
      * @see Twig_Environment::__construct()
      */
-    public function __construct(Zend_View_Interface $view, Twig_LoaderInterface $loader = null, $options = array())
-    {        
+    public function __construct(Zend_View_Interface $view, Twig_Loader_Filesystem $loader = null, $options = array())
+    {
         $this->setView($view);
         parent::__construct($loader, $options);
     }
@@ -58,4 +58,14 @@ class Ano_ZFTwig_Environment extends Twig_Environment
         $this->view = $view;
         return $this;
     }
+
+	final public function setLoader(Twig_LoaderInterface $loader)
+	{
+		if(!$loader instanceof Twig_Loader_Filesystem){
+			throw new InvalidArgumentException('Only loaders of typ Twig_Loader_Filesystem are supported.');
+		}
+		parent::setLoader($loader);
+	}
+
+
 }

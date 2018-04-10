@@ -111,6 +111,18 @@ class Ano_ZFTwig_View_Engine_TwigEngine extends Ano_View_Engine_Abstract
         return $this->environment;
     }
 
+	/**
+	 * @return Twig_Loader_Filesystem
+	 * @throws Ano_ZFTwig_View_Engine_TwigEngine_Exception
+	 */
+    private function getLoader(){
+    	$loader = $this -> getEnvironment() -> getLoader();
+    	if(!$loader instanceof Twig_Loader_Filesystem){
+			throw new Ano_ZFTwig_View_Engine_TwigEngine_Exception('Unsupported loader set in environment.');
+		}
+		return $loader;
+	}
+
     /**
      * Renders the template
      *
@@ -122,8 +134,8 @@ class Ano_ZFTwig_View_Engine_TwigEngine extends Ano_View_Engine_Abstract
         $path = dirname($template);
         $templateFile = basename($template);
 
-        $this->getEnvironment()->getLoader()->addPath($path);
-        $template = $this->getEnvironment()->loadTemplate($templateFile);
+        $this->getLoader()->addPath($path);
+        $template = $this->getEnvironment()->load($templateFile);
         $template->display($vars);
     }
 }
