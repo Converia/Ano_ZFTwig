@@ -23,10 +23,17 @@ class Ano_ZFTwig_Node_HelperNode extends Twig_Node
 {
     protected $helper;
 
+	/**
+	 * Ano_ZFTwig_Node_HelperNode constructor.
+	 * @param string $helper
+	 * @param Twig_Node_Expression|null $attributes
+	 * @param int $lineno
+	 * @param null $tag
+	 */
     public function __construct($helper, Twig_Node_Expression $attributes = null, $lineno, $tag = null)
     {
         $this->helper = $helper;
-        parent::__construct(array(), array('helper_attributes' => $attributes), array(), $lineno, $tag);
+        parent::__construct(array(), array('helper_attributes' => $attributes), $lineno, $tag);
     }
 
     /**

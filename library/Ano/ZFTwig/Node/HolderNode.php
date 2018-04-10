@@ -21,8 +21,18 @@
  */
 class Ano_ZFTwig_Node_HolderNode extends Twig_Node
 {
+	/**
+	 * @var string
+	 */
     protected $placeholder;
 
+	/**
+	 * Ano_ZFTwig_Node_HolderNode constructor.
+	 * @param string $placeholder
+	 * @param array $attributes
+	 * @param int $lineno
+	 * @param null $tag
+	 */
     public function __construct($placeholder, $attributes, $lineno, $tag = null)
     {
         $this->placeholder = $placeholder;

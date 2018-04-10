@@ -23,6 +23,12 @@ class Ano_ZFTwig_Node_LayoutNode extends Twig_Node
 {
     protected $contentKey;
 
+	/**
+	 * Ano_ZFTwig_Node_LayoutNode constructor.
+	 * @param string $contentKey
+	 * @param int $lineno
+	 * @param null $tag
+	 */
     public function __construct($contentKey, $lineno, $tag = null)
     {
         $this->contentKey = $contentKey;

@@ -23,6 +23,12 @@ class Ano_ZFTwig_Node_HeadTitleNode extends Twig_Node
 {
     protected $contentKey;
 
+	/**
+	 * Ano_ZFTwig_Node_HeadTitleNode constructor.
+	 * @param Twig_Node_Expression $expr
+	 * @param int $lineno
+	 * @param null $tag
+	 */
     public function __construct(Twig_Node_Expression $expr, $lineno, $tag = null)
     {
         parent::__construct(array('expr' => $expr), array(), $lineno, $tag);

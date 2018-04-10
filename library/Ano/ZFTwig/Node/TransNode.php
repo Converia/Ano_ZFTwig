@@ -22,7 +22,13 @@
 class Ano_ZFTwig_Node_TransNode extends Twig_Node
 {
 
-    public function __construct(Twig_NodeInterface $body, $lineno, $tag = null)
+	/**
+	 * Ano_ZFTwig_Node_TransNode constructor.
+	 * @param Twig_Node $body
+	 * @param int $lineno
+	 * @param null $tag
+	 */
+    public function __construct(Twig_Node $body, $lineno, $tag = null)
     {
         parent::__construct(array('body' => $body), array(), $lineno, $tag);
     }
@@ -38,8 +44,5 @@ class Ano_ZFTwig_Node_TransNode extends Twig_Node
                  ->write('echo $this->env->getView()->translate(')
                  ->subcompile($this->getNode('body'))
                  ->raw(');');
-
-        //$compiler->string($this->getNode('body'));
-
     }
 }

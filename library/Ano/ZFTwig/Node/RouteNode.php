@@ -21,7 +21,7 @@
  */
 class Ano_ZFTwig_Node_RouteNode extends Twig_Node
 {
-    public function __construct(Twig_NodeInterface $route, Twig_Node_Expression $attributes = null, $lineno, $tag = null)
+    public function __construct(Twig_Node $route, Twig_Node_Expression $attributes = null, $lineno, $tag = null)
     {
         parent::__construct(array('route' => $route, 'route_attributes' => $attributes), array(), $lineno, $tag);
     }

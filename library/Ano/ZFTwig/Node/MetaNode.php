@@ -23,6 +23,12 @@ class Ano_ZFTwig_Node_MetaNode extends Twig_Node
 {
     protected $contentKey;
 
+	/**
+	 * Ano_ZFTwig_Node_MetaNode constructor.
+	 * @param Twig_Node_Expression $options
+	 * @param int $lineno
+	 * @param null $tag
+	 */
     public function __construct(Twig_Node_Expression $options, $lineno, $tag = null)
     {
         parent::__construct(array('options' => $options), array(), $lineno, $tag);
