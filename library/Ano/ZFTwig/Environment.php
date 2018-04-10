@@ -28,16 +28,13 @@ class Ano_ZFTwig_Environment extends Twig_Environment
      * @param Zend_View_Interface    $viw     A Zend Framework view object
      * @param Twig_LoaderInterface   $loader  A Twig_LoaderInterface instance
      * @param array                  $options An array of options
-     * @param Twig_LexerInterface    $lexer   A Twig_LexerInterface instance
-     * @param Twig_ParserInterface   $parser  A Twig_ParserInterface instance
-     * @param Twig_CompilerInterface $compiler A Twig_CompilerInterface instance
      *
      * @see Twig_Environment::__construct()
      */
-    public function __construct(Zend_View_Interface $view, Twig_LoaderInterface $loader = null, $options = array(), Twig_LexerInterface $lexer = null, Twig_ParserInterface $parser = null, Twig_CompilerInterface $compiler = null)
+    public function __construct(Zend_View_Interface $view, Twig_LoaderInterface $loader = null, $options = array())
     {        
         $this->setView($view);
-        parent::__construct($loader, $options, $lexer, $parser, $compiler);
+        parent::__construct($loader, $options);
     }
 
     /**

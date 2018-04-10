@@ -14,7 +14,7 @@
     },
     "require": {
         "zendframework/zendframework1": "1.*",
-        "twig/twig": "1.*"
+        "twig/twig": "^1.34 || ^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
