@@ -20,11 +20,7 @@
  * @version    $Id: IndexController.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
-require_once 'PHPUnit/Util/Filter.php';
 
-//PHPUnit_Util_Filter::addFileToFilter(__FILE__);
-
-require_once 'Zend/Controller/Action.php';
 
 /**
  * Mock file for testbed
