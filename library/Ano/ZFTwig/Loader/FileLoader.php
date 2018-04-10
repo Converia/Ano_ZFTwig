@@ -22,17 +22,5 @@
 class Ano_ZFTwig_Loader_FileLoader extends Twig_Loader_Filesystem
                                    implements Twig_LoaderInterface
 {
-    /**
-     * Add to the stack of view paths.
-     *
-     * @param string $path The directory to add
-     */
-    public function addPath($path, $namespace = '__main__')
-    {
-        if (!is_dir($path)) {
-            throw new Twig_Error_Loader(sprintf('The "%s" directory does not exist.', $path));
-        }
 
-        $this->paths[$namespace][] = rtrim($path, '/\\');
-    }
 }
