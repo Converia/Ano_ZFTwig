@@ -25,7 +25,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_ViewRendererTest::main");
 }
 
-require_once dirname(__FILE__) . '/../../_files/modules/foo/controllers/IndexController.php';
+require_once dirname(__FILE__) . '/../../../_files/modules/foo/controllers/IndexController.php';
 
 /**
  * Test class for Zend_Controller_Action_Helper_ViewRenderer.
@@ -91,7 +91,7 @@ class Ano_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_Te
      */
     protected function setUp()
     {
-        $this->basePath = realpath(dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 2));
+        $this->basePath = realpath(dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 3));
         $this->request  = new Zend_Controller_Request_Http();
         $this->response = new Zend_Controller_Response_Http();
         $this->front    = Zend_Controller_Front::getInstance();
