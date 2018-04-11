@@ -3,13 +3,7 @@ Last changes
 
 ****** Changed the way some tags work. Removed the DefaultHelperTokenParser, and added a dedicated parser for each tag ******
 
-* Makes Ano_ZFTwig compatible with last twig stable version
-* Makes better use of arrays syntaxes for consistency ([] for arrays, {} for hashes)
-* Uses the new twig's functions system for consistency (uses the {{ }} tag to display something instead of a {% %} tag)
-* Doesn't have hardcoded twig extensions adding anymore (except for Escaper). Extensions classes are explicitly defined into the configuration. Allows the user to add his own extensions.
-* Adds an "auto_escape" option into configuration
-* Adds support for twig global variables. Ano_ZFTwig_GlobalVariables is loaded by default, but this can be overriden by the user through the configuration file.
-
+* Makes Ano_ZFTwig compatible with twig ^1.34 || ^2.0
 
 Ano_ZFTwig
 ==========
