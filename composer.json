@@ -13,7 +13,7 @@
         "psr-0": {"": "library/"}
     },
     "require": {
-        "zendframework/zendframework1": "1.*",
+        "magento/zendframework1": "^1.12.",
         "twig/twig": "^1.34 || ^2.0"
     },
     "require-dev": {
