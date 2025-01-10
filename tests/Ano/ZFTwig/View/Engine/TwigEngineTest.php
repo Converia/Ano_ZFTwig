@@ -1,4 +1,7 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Created by PhpStorm.
  * User: boellmann
@@ -6,11 +9,11 @@
  * Time: 08:28
  */
 
-class Ano_ZFTwig_View_Engine_TwigEngineTest extends PHPUnit_Framework_TestCase
+class Ano_ZFTwig_View_Engine_TwigEngineTest extends TestCase
 {
 	private $templatePath;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		$this -> templatePath = __DIR__.'/../../../_files/templates';
 	}

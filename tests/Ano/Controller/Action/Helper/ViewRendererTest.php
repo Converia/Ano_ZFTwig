@@ -21,6 +21,8 @@
  */
 
 // Call Zend_Controller_Action_Helper_ViewRendererTest::main() if this source file is executed directly.
+use PHPUnit\Framework\TestCase;
+
 if (!defined("PHPUnit_MAIN_METHOD")) {
     define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_ViewRendererTest::main");
 }
@@ -39,7 +41,7 @@ require_once dirname(__FILE__) . '/../../../_files/modules/foo/controllers/Index
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Ano_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_TestCase
+class Ano_Controller_Action_Helper_ViewRendererTest extends TestCase
 {
     /**
      * Base path to controllers, views
@@ -89,7 +91,7 @@ class Ano_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_Te
      *
      * @access protected
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->basePath = realpath(dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 3));
         $this->request  = new Zend_Controller_Request_Http();
@@ -110,7 +112,7 @@ class Ano_Controller_Action_Helper_ViewRendererTest extends PHPUnit_Framework_Te
      *
      * @access protected
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
