@@ -11,6 +11,8 @@
  * @license    New BSD License
  */
 
+use Twig\Loader\FilesystemLoader;
+
 /**
  * View scripts loader for Twig's Zend Framework integration
  * Adds specific methods to fit with Zend_View logic.
@@ -19,8 +21,7 @@
  * @subpackage  Loader
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Loader_FileLoader extends Twig_Loader_Filesystem
-                                   implements Twig_LoaderInterface
+class Ano_ZFTwig_Loader_FileLoader extends FilesystemLoader
 {
 
 }

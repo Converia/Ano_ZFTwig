@@ -11,29 +11,30 @@
  * @license    New BSD License
  */
 
+use Twig\Environment;
+use Twig\Loader\ArrayLoader;
+use Twig\Loader\FilesystemLoader;
+use Twig\Loader\LoaderInterface;
+
 /**
  * Twig environment for Zend Framework 1.1x
  *
  * @package     Ano_ZFTwig
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Environment extends Twig_Environment
+class Ano_ZFTwig_Environment extends Environment
 {
     /**
      * @var Zend_View_Interface
      */
     protected $view;
 
-    /**
-     * @param Zend_View_Interface    $viw     A Zend Framework view object
-     * @param Twig_Loader_Filesystem   $loader  A Twig_Loader_Filesystem instance
-     * @param array                  $options An array of options
-     *
-     * @see Twig_Environment::__construct()
-     */
-    public function __construct(Zend_View_Interface $view, Twig_Loader_Filesystem $loader = null, $options = array())
+    public function __construct(Zend_View_Interface $view, FilesystemLoader $loader = null, $options = array())
     {
         $this->setView($view);
+        if (null === $loader) {
+            $loader = new ArrayLoader();
+        }
         parent::__construct($loader, $options);
     }
 
@@ -59,9 +60,9 @@ class Ano_ZFTwig_Environment extends Twig_Environment
         return $this;
     }
 
-	final public function setLoader(Twig_LoaderInterface $loader)
+	final public function setLoader(LoaderInterface $loader)
 	{
-		if(!$loader instanceof Twig_Loader_Filesystem){
+		if(!$loader instanceof FilesystemLoader){
 			throw new InvalidArgumentException('Only loaders of typ Twig_Loader_Filesystem are supported.');
 		}
 		parent::setLoader($loader);

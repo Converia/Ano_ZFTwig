@@ -11,6 +11,9 @@
  * @license    New BSD License
  */
 
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
+
 /**
  * Wrapper for translate Zend Framework 1.1x view helper
  * Syntax : {% trans "message" %}
@@ -19,38 +22,32 @@
  * @subpackage  TokenParser
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_TokenParser_TransTokenParser extends Twig_TokenParser
+class Ano_ZFTwig_TokenParser_TransTokenParser extends AbstractTokenParser
 {
-    /**
-     * Parses a token and returns a node.
-     *
-     * @param  Twig_Token $token A Twig_Token instance
-     * @return Twig_Node A Twig_NodeInterface instance
-     */
-    public function parse(Twig_Token $token)
+    public function parse(Token $token)
     {
         $lineno = $token->getLine();
         $stream = $this->parser->getStream();        
 
         $body = null;
-        if (!$stream->test(Twig_Token::BLOCK_END_TYPE)) {
+        if (!$stream->test(Token::BLOCK_END_TYPE)) {
             // {% trans "message" %}
             //$body = $stream->expect(Twig_Token::STRING_TYPE)->getValue();
-            $body = $this->parser->getExpressionParser()->parseExpression();
+            $body = $this->parser->parseExpression();
         }
 
         if (null === $body) {
             // {% trans %}message{% endtrans %}
-            $stream->expect(Twig_Token::BLOCK_END_TYPE);
+            $stream->expect(Token::BLOCK_END_TYPE);
             $body = $this->parser->subparse(array($this, 'decideTransFork'), true);
         }
 
-        $stream->expect(Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         return new Ano_ZFTwig_Node_TransNode($body, $lineno, $this->getTag());
     }
 
-    public function decideTransFork(Twig_Token $token)
+    public function decideTransFork(Token $token)
     {
         return $token->test(array('endtrans'));
     }

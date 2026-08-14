@@ -3,7 +3,7 @@ Last changes
 
 ****** Changed the way some tags work. Removed the DefaultHelperTokenParser, and added a dedicated parser for each tag ******
 
-* Makes Ano_ZFTwig compatible with twig ^1.34 || ^2.0
+* Makes Ano_ZFTwig compatible with twig ^3.28
 * Using composer for autoloading - breaking change
 
 Ano_ZFTwig

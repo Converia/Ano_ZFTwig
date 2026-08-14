@@ -11,6 +11,10 @@
  * @license    New BSD License
  */
 
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Node;
+
 /**
  * Compiles route node to PHP.
  * @see Ano_ZFTwig_Extension_Helper
@@ -19,19 +23,14 @@
  * @subpackage  Node
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Node_RouteNode extends Twig_Node
+class Ano_ZFTwig_Node_RouteNode extends Node
 {
-    public function __construct(Twig_Node $route, Twig_Node_Expression $attributes = null, $lineno, $tag = null)
+    public function __construct(Node $route, AbstractExpression $attributes = null, $lineno, $tag = null)
     {
         parent::__construct(array('route' => $route, 'route_attributes' => $attributes), array(), $lineno, $tag);
     }
 
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler
             ->addDebugInfo($this)

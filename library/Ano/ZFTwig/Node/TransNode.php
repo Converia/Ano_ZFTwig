@@ -11,6 +11,9 @@
  * @license    New BSD License
  */
 
+use Twig\Compiler;
+use Twig\Node\Node;
+
 /**
  * Compiles ZF translate view helper to PHP.
  * @see Ano_ZFTwig_Extension_Helper
@@ -19,26 +22,14 @@
  * @subpackage  Node
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Node_TransNode extends Twig_Node
+class Ano_ZFTwig_Node_TransNode extends Node
 {
-
-	/**
-	 * Ano_ZFTwig_Node_TransNode constructor.
-	 * @param Twig_Node $body
-	 * @param int $lineno
-	 * @param null $tag
-	 */
-    public function __construct(Twig_Node $body, $lineno, $tag = null)
+    public function __construct(Node $body, $lineno, $tag = null)
     {
         parent::__construct(array('body' => $body), array(), $lineno, $tag);
     }
 
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler->addDebugInfo($this)
                  ->write('echo $this->env->getView()->translate(')

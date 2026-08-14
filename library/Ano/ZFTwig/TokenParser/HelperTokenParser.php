@@ -11,6 +11,9 @@
  * @license    New BSD License
  */
 
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
+
 /**
  * Wrapper for any Zend Framework 1.1x view helpers
  * Syntax : {% hlp 'myHelper' with ['param1': 'value1'] %}
@@ -19,29 +22,23 @@
  * @subpackage  TokenParser
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_TokenParser_HelperTokenParser extends Twig_TokenParser
+class Ano_ZFTwig_TokenParser_HelperTokenParser extends AbstractTokenParser
 {
-    /**
-     * Parses a token and returns a node.
-     *
-     * @param  Twig_Token $token A Twig_Token instance
-     * @return Twig_Node A Twig_NodeInterface instance
-     */
-    public function parse(Twig_Token $token)
+    public function parse(Token $token)
     {
         $lineno = $token->getLine();
-        $stream = $this->parser->getStream();        
+        $stream = $this->parser->getStream();
 
-        $helper = $this->parser->getStream()->expect(Twig_Token::STRING_TYPE)->getValue();
+        $helper = $this->parser->getStream()->expect(Token::STRING_TYPE)->getValue();
 
         $attributes = null;
-        if ($stream->test(Twig_Token::NAME_TYPE, 'with')) {
+        if ($stream->test(Token::NAME_TYPE, 'with')) {
             $stream->next();
-            
-            $attributes = $this->parser->getExpressionParser()->parseExpression();
+
+            $attributes = $this->parser->parseExpression();
         }
 
-        $stream->expect(Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         return new Ano_ZFTwig_Node_HelperNode($helper, $attributes, $lineno, $this->getTag());
     }

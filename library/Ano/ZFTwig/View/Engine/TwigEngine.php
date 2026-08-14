@@ -11,6 +11,10 @@
  * @license    New BSD License
  */
 
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\Loader\LoaderInterface;
+
 /**
  * Template Engine for Twig
  *
@@ -21,7 +25,7 @@
 class Ano_ZFTwig_View_Engine_TwigEngine extends Ano_View_Engine_Abstract
 {
     /**
-     * @var Twig_Environment
+     * @var Environment
      */
     protected $environment = null;
 
@@ -44,7 +48,7 @@ class Ano_ZFTwig_View_Engine_TwigEngine extends Ano_View_Engine_Abstract
         $twigEnvironment = new Ano_ZFTwig_Environment($this->getView(), $loader, $options);
 
         if (array_key_exists('auto_escape', $options)) {
-            $twigEnvironment->addExtension(new Twig_Extension_Escaper((bool)$options['auto_escape']));
+            $twigEnvironment->addExtension(new \Twig\Extension\EscaperExtension((bool)$options['auto_escape']));
         }
 
         if (array_key_exists('extensions', $config) && is_array($config['extensions'])) {
@@ -91,33 +95,21 @@ class Ano_ZFTwig_View_Engine_TwigEngine extends Ano_View_Engine_Abstract
         $this->setEnvironment($twigEnvironment);
     }
 
-    /**
-     * Sets the twig environment
-     *
-     * @param  Twig_Environment $environment
-     * @return Ano_ZFTwig_View_Engine_TwigEngine
-     */
-    public function setEnvironment(Twig_Environment $environment)
+    public function setEnvironment(Environment $environment): self
     {
         $this->environment = $environment;
         return $this;
     }
 
-    /**
-     * @return Twig_Environment
-     */
-    public function getEnvironment()
+    public function getEnvironment(): Environment
     {
         return $this->environment;
     }
 
-	/**
-	 * @return Twig_Loader_Filesystem
-	 * @throws Ano_ZFTwig_View_Engine_TwigEngine_Exception
-	 */
-    private function getLoader(){
+    private function getLoader(): LoaderInterface
+    {
     	$loader = $this -> getEnvironment() -> getLoader();
-    	if(!$loader instanceof Twig_Loader_Filesystem){
+    	if(!$loader instanceof FilesystemLoader) {
 			throw new Ano_ZFTwig_View_Engine_TwigEngine_Exception('Unsupported loader set in environment.');
 		}
 		return $loader;

@@ -11,6 +11,9 @@
  * @license    New BSD License
  */
 
+use Twig\Compiler;
+use Twig\Node\Node;
+
 /**
  * Compiles holder node to PHP.
  * @see Ano_ZFTwig_Extension_Helper
@@ -19,7 +22,7 @@
  * @subpackage  Node
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Node_HolderNode extends Twig_Node
+class Ano_ZFTwig_Node_HolderNode extends Node
 {
 	/**
 	 * @var string
@@ -39,12 +42,7 @@ class Ano_ZFTwig_Node_HolderNode extends Twig_Node
         parent::__construct(array(), array('holder_attributes' => $attributes), $lineno, $tag);
     }
 
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $attributes = $this->getAttribute('holder_attributes');
         

@@ -11,6 +11,10 @@
  * @license    New BSD License
  */
 
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Node;
+
 /**
  * Compiles any ZF view helper to PHP.
  * @see Ano_ZFTwig_Extension_Helper
@@ -19,29 +23,17 @@
  * @subpackage  Node
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Node_HelperNode extends Twig_Node
+class Ano_ZFTwig_Node_HelperNode extends Node
 {
     protected $helper;
 
-	/**
-	 * Ano_ZFTwig_Node_HelperNode constructor.
-	 * @param string $helper
-	 * @param Twig_Node_Expression|null $attributes
-	 * @param int $lineno
-	 * @param null $tag
-	 */
-    public function __construct($helper, Twig_Node_Expression $attributes = null, $lineno, $tag = null)
+    public function __construct($helper, ?AbstractExpression $attributes = null, $lineno, $tag = null)
     {
         $this->helper = $helper;
         parent::__construct(array(), array('helper_attributes' => $attributes), $lineno, $tag);
     }
 
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $args = $this->getAttribute('helper_attributes');
         $compiler

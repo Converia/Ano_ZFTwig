@@ -11,6 +11,9 @@
  * @license    New BSD License
  */
 
+use Twig\Environment;
+use Twig\TwigFunction;
+
 /**
  * ZF Helper Extension for Twig's Zend Framework Integration
  * Handles some native ZF view helpers
@@ -21,7 +24,7 @@
  * @subpackage  Extension
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
+class Ano_ZFTwig_Extension_HelperExtension extends Twig\Extension\AbstractExtension
 {
     /**
      * Returns the token parser instance to add to the existing list.
@@ -60,34 +63,34 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'headTitle'    => new \Twig_SimpleFunction('headTitle', array($this, 'getHeadTitle'), array(
+            'headTitle'    => new TwigFunction('headTitle', array($this, 'getHeadTitle'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
-            'javascripts'  => new \Twig_SimpleFunction('javascripts', array($this, 'getJavascripts'), array(
+            'javascripts'  => new TwigFunction('javascripts', array($this, 'getJavascripts'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
-            'stylesheets'  => new \Twig_SimpleFunction('stylesheets', array($this, 'getStylesheets'), array(
+            'stylesheets'  => new TwigFunction('stylesheets', array($this, 'getStylesheets'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
-            'metas'  => new \Twig_SimpleFunction('metas', array($this, 'getMetas'), array(
+            'metas'  => new TwigFunction('metas', array($this, 'getMetas'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
-            'url'  => new \Twig_SimpleFunction('url', array($this, 'getUrl'), array(
+            'url'  => new TwigFunction('url', array($this, 'getUrl'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
-            'layoutBlock'  => new \Twig_SimpleFunction('layoutBlock', array($this, 'getLayoutBlock'), array(
+            'layoutBlock'  => new TwigFunction('layoutBlock', array($this, 'getLayoutBlock'), array(
                 'needs_environment' => true,
                 'is_safe' => array('html')
             )),
         );
     }
 
-    public function getHeadTitle(Twig_Environment $env)
+    public function getHeadTitle(Environment $env)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
@@ -95,7 +98,7 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
         return $env->getView()->headTitle();
     }
 
-    public function getJavascripts(Twig_Environment $env)
+    public function getJavascripts(Environment $env)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
@@ -103,7 +106,7 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
         return $env->getView()->headScript();
     }
 
-    public function getStylesheets(Twig_Environment $env)
+    public function getStylesheets(Environment $env)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
@@ -111,7 +114,7 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
         return $env->getView()->headLink();
     }
 
-    public function getMetas(Twig_Environment $env)
+    public function getMetas(Environment $env)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
@@ -119,7 +122,7 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
         return $env->getView()->headMeta();
     }
 
-    public function getUrl(Twig_Environment $env, $name, array $parameters = array(), $reset = false, $encode = true)
+    public function getUrl(Environment $env, $name, array $parameters = array(), $reset = false, $encode = true)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
@@ -127,7 +130,7 @@ class Ano_ZFTwig_Extension_HelperExtension extends Twig_Extension
         return $env->getView()->url($parameters, $name, $reset, $encode);
     }
 
-    public function getLayoutBlock(Twig_Environment $env, $name)
+    public function getLayoutBlock(Environment $env, $name)
     {
 		if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');

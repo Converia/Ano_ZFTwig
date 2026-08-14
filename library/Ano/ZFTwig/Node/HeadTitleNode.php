@@ -11,6 +11,10 @@
  * @license    New BSD License
  */
 
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Node;
+
 /**
  * Compiles headTitle node to PHP.
  * @see Ano_ZFTwig_Extension_Helper
@@ -19,27 +23,16 @@
  * @subpackage  Node
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Node_HeadTitleNode extends Twig_Node
+class Ano_ZFTwig_Node_HeadTitleNode extends Node
 {
     protected $contentKey;
 
-	/**
-	 * Ano_ZFTwig_Node_HeadTitleNode constructor.
-	 * @param Twig_Node_Expression $expr
-	 * @param int $lineno
-	 * @param null $tag
-	 */
-    public function __construct(Twig_Node_Expression $expr, $lineno, $tag = null)
+    public function __construct(AbstractExpression $expr, $lineno, $tag = null)
     {
         parent::__construct(array('expr' => $expr), array(), $lineno, $tag);
     }
 
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler
             ->addDebugInfo($this)

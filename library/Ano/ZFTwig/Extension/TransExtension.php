@@ -11,6 +11,10 @@
  * @license    New BSD License
  */
 
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+
 /**
  * ZF Trans Extension for Twig's Zend Framework Integration
  *
@@ -20,7 +24,7 @@
  * @subpackage  Extension
  * @author      Benjamin Dulau <benjamin.dulau@gmail.com>
  */
-class Ano_ZFTwig_Extension_TransExtension extends Twig_Extension
+class Ano_ZFTwig_Extension_TransExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -29,7 +33,7 @@ class Ano_ZFTwig_Extension_TransExtension extends Twig_Extension
     {
         return array(
             // {% tag "message"|trans %}
-            'trans' => new Twig_SimpleFilter('trans', array($this, 'trans'), array('needs_environment' => true)),
+            'trans' => new TwigFunction('trans', array($this, 'trans'), array('needs_environment' => true)),
         );
     }
 
@@ -50,11 +54,10 @@ class Ano_ZFTwig_Extension_TransExtension extends Twig_Extension
      * Calls the ZF translate view helper and
      * returns the translated string.
      *
-     * @param Twig_Environment $env
      * @param string           $input The input to translate
      * @return string          The translated output
      */
-    public function trans(Twig_Environment $env, $input)
+    public function trans(Environment $env, $input)
     {
     	if(!$env instanceof Ano_ZFTwig_Environment){
 			throw new InvalidArgumentException('This twig extension only works with the environment bridge.');
