@@ -13,7 +13,7 @@
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
-use Twig\TwigFunction;
+use Twig\TwigFilter;
 
 /**
  * ZF Trans Extension for Twig's Zend Framework Integration
@@ -33,7 +33,7 @@ class Ano_ZFTwig_Extension_TransExtension extends AbstractExtension
     {
         return array(
             // {% tag "message"|trans %}
-            'trans' => new TwigFunction('trans', array($this, 'trans'), array('needs_environment' => true)),
+            'trans' => new TwigFilter('trans', array($this, 'trans'), array('needs_environment' => true)),
         );
     }
 

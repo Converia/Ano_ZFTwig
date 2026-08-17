@@ -53,6 +53,6 @@ class Ano_ZFTwig_View_Engine_TwigEngineTest extends TestCase
 		$view->addTemplateEngine('twig', $viewEngine);
 		$view->setTemplateEngine('twig');
 		$content = $view -> render('translation.twig');
-		$this -> assertEquals('Hello MyTranslation',$content);
+		$this -> assertEquals('Hello MyTranslation MyTranslation1',$content);
 	}
 }
